@@ -35,7 +35,9 @@ add_executable(${PROJECT_NAME} main.cpp
         EntityManager.cpp
         EntityManager.h
         GeometryRenderingSystem.cpp
-        GeometryRenderingSystem.h)
+        GeometryRenderingSystem.h
+        MovementSystem.cpp
+        MovementSystem.h)
 
 # set the include directory
 target_include_directories(${PROJECT_NAME} PRIVATE ${raylib_INCLUDE_DIRS})

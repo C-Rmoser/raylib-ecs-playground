@@ -1,7 +1,5 @@
 #include "EntityManager.h"
 
-#include <algorithm>
-
 EntityManager::EntityManager()
 {
     for (uint32_t i = 0; i < maxEntities; ++i)
@@ -14,16 +12,17 @@ Entity EntityManager::createEntity()
 {
     Entity entity = availableEntities.front();
     availableEntities.pop();
-    aliveEntities[entity] = true;
+    aliveEntities.push_back(entity);
 
     return entity;
 }
 
 void EntityManager::DestroyEntity(Entity entity)
 {
-    aliveEntities[entity] = false;
+    aliveEntities.erase(std::ranges::find(aliveEntities, entity));
     availableEntities.push(entity);
 
     positions.erase(entity);
+    rotations.erase(entity);
     geometryComponents.erase(entity);
 }

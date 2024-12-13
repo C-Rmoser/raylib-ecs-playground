@@ -1,25 +1,24 @@
 #include "GeometryRenderingSystem.h"
-
 #include "raymath.h"
 
 void GeometryRenderingSystem::Render(
-    bool (&entities)[100000],
-    const std::unordered_map<unsigned int, Vector2>& positions,
-    const std::unordered_map<unsigned int, GeometryComponent>& geometryComponents) const
+    const std::vector<Entity>& entities,
+    const std::unordered_map<Entity, Vector2>& positions,
+    const std::unordered_map<Entity, Vector2>& rotations,
+    const std::unordered_map<Entity, GeometryComponent>& geometryComponents) const
 {
-    for (unsigned int entity : entities)
+    for (Entity entity : entities)
     {
         if (positions.contains(entity) && geometryComponents.contains(entity))
         {
             const auto [posX, posY] = positions.at(entity);
-            GeometryComponent geometryComponent = geometryComponents.at(entity);
 
             const Vector2 circlePos{
                 posX * cellSize + cellSize / 2,
                 posY * cellSize + cellSize / 2
             };
             const Vector2 scaledRotation{
-                Vector2Multiply(geometryComponent.rotation, Vector2{cellSize / 2, cellSize / 2})
+                Vector2Multiply(rotations.at(entity), Vector2{cellSize / 2, cellSize / 2})
             };
             auto [directionIndicatorX, directionIndicatorY] = Vector2Add(circlePos, scaledRotation);
 
