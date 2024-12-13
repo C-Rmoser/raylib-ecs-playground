@@ -1,7 +1,5 @@
 #include "Game.h"
 #include "EntityManager.h"
-#include "GeometryRenderingSystem.h"
-#include "MovementSystem.h"
 
 #include <raylib.h>
 
@@ -9,7 +7,7 @@ int main()
 {
     InitWindow(1500, 1000, "Raylib");
     SetTargetFPS(60);
-    auto game = Game();
+    auto& game = Game::Instance();
     auto entityManager = EntityManager();
 
     const Entity extractor = entityManager.createEntity();
@@ -25,27 +23,15 @@ int main()
     entityManager.velocity[extractor2] = 1.0f;
     entityManager.geometryComponents[extractor2] = geometryComponent;
 
-    auto renderer = GeometryRenderingSystem();
-    auto movementSystem = MovementSystem();
-
     while (!WindowShouldClose())
     {
-        game.Update();
-        movementSystem.Update(entityManager.aliveEntities,
-                              entityManager.positions,
-                              entityManager.rotations,
-                              entityManager.velocity
-        );
+        game.Update(entityManager);
 
         BeginDrawing();
 
         ClearBackground(SKYBLUE);
-        renderer.Render(entityManager.aliveEntities,
-                        entityManager.positions,
-                        entityManager.rotations,
-                        entityManager.geometryComponents);
 
-        game.Draw();
+        game.Draw(entityManager);
 
         EndDrawing();
     }

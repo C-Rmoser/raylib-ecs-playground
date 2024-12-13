@@ -12,8 +12,6 @@ void MovementSystem::Update(
     {
         if (positions.contains(entity) && rotations.contains(entity) && velocity.contains(entity))
         {
-            std::cout << positions.at(entity).x << " | " << positions.at(entity).y << std::endl;
-
             positions.at(entity).x += rotations.at(entity).x * velocity.at(entity) * GetFrameTime();
             positions.at(entity).y += rotations.at(entity).y * velocity.at(entity) * GetFrameTime();
         }
