@@ -9,7 +9,7 @@ class GeometryRenderingSystem
     float cellSize{40.0};
 
 public:
-    void Render(const std::vector<unsigned int>& entities,
+    void Render(bool(&entities)[100000],
                 const std::unordered_map<unsigned int, Vector2>& positions,
                 const std::unordered_map<unsigned int, GeometryComponent>& geometryComponents) const;
 };

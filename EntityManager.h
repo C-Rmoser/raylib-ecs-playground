@@ -1,5 +1,6 @@
 #ifndef ENTITYMANAGER_H
 #define ENTITYMANAGER_H
+#include <array>
 #include <cstdint>
 #include <queue>
 #include <unordered_map>
@@ -18,8 +19,10 @@ struct GeometryComponent
 class EntityManager
 {
 public:
+    const unsigned int maxEntities = 100000;
+
     std::queue<Entity> availableEntities{};
-    std::vector<uint32_t> aliveEntities{};
+    bool aliveEntities[100000]{};
     std::unordered_map<Entity, Vector2> positions{};
     std::unordered_map<Entity, GeometryComponent> geometryComponents;
 

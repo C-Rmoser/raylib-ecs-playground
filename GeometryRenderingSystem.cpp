@@ -3,10 +3,9 @@
 #include "raymath.h"
 
 void GeometryRenderingSystem::Render(
-    const std::vector<unsigned int>& entities,
+    bool (&entities)[100000],
     const std::unordered_map<unsigned int, Vector2>& positions,
-    const std::unordered_map<unsigned int, GeometryComponent>
-    & geometryComponents) const
+    const std::unordered_map<unsigned int, GeometryComponent>& geometryComponents) const
 {
     for (unsigned int entity : entities)
     {
