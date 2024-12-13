@@ -2,24 +2,30 @@
 
 #include "raymath.h"
 
-void GeometryRenderingSystem::Render(const std::vector<unsigned int>& entities,
-                                     const std::unordered_map<unsigned int, Vector2>& positions,
-                                     const std::unordered_map<unsigned int, GeometryComponent>& geometryComponents)
+void GeometryRenderingSystem::Render(
+    const std::vector<unsigned int>& entities,
+    const std::unordered_map<unsigned int, Vector2>& positions,
+    const std::unordered_map<unsigned int, GeometryComponent>
+    & geometryComponents) const
 {
-    for (int i = 0; i < entities.size(); ++i)
+    for (unsigned int entity : entities)
     {
-        auto entity = entities[i];
         if (positions.contains(entity) && geometryComponents.contains(entity))
         {
-            Vector2 position = positions.at(entity);
+            const auto [posX, posY] = positions.at(entity);
             GeometryComponent geometryComponent = geometryComponents.at(entity);
 
-            Vector2 circlePos{position.x * cellSize + cellSize / 2, position.y * cellSize + cellSize / 2};
-            Vector2 scaledRotation{Vector2Multiply(geometryComponent.rotation, Vector2{cellSize / 2, cellSize / 2})};
-            Vector2 directionIndicatorPos = Vector2Add(circlePos, scaledRotation);
+            const Vector2 circlePos{
+                posX * cellSize + cellSize / 2,
+                posY * cellSize + cellSize / 2
+            };
+            const Vector2 scaledRotation{
+                Vector2Multiply(geometryComponent.rotation, Vector2{cellSize / 2, cellSize / 2})
+            };
+            auto [directionIndicatorX, directionIndicatorY] = Vector2Add(circlePos, scaledRotation);
 
             DrawCircle(circlePos.x, circlePos.y, cellSize / 2 - 1, MAROON);
-            DrawCircle(directionIndicatorPos.x, directionIndicatorPos.y, 3.0f, BLUE);
+            DrawCircle(directionIndicatorX, directionIndicatorY, 3.0f, BLUE);
         }
     }
 }

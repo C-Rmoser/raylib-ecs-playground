@@ -13,24 +13,25 @@ int main()
     auto game = Game();
     auto entityManager = EntityManager();
 
-    Entity extractor = entityManager.createEntity();
+    const Entity extractor = entityManager.createEntity();
     entityManager.positions[extractor] = Vector2(10, 10);
     GeometryComponent geometryComponent = {1, 1, Vector2(0, 1)};
     entityManager.geometryComponents[extractor] = geometryComponent;
 
-    Entity extractor2 = entityManager.createEntity();
+    const Entity extractor2 = entityManager.createEntity();
     entityManager.positions[extractor2] = Vector2(20, 15);
     entityManager.geometryComponents[extractor2] = geometryComponent;
+
+    auto renderer = GeometryRenderingSystem();
 
     while (!WindowShouldClose())
     {
         game.Update();
 
         BeginDrawing();
-        auto renderer = GeometryRenderingSystem();
-        renderer.Render(entityManager.aliveEntities, entityManager.positions, entityManager.geometryComponents);
 
         ClearBackground(SKYBLUE);
+        renderer.Render(entityManager.aliveEntities, entityManager.positions, entityManager.geometryComponents);
         game.Draw();
 
         EndDrawing();

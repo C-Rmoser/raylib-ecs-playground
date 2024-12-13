@@ -11,7 +11,7 @@ class GeometryRenderingSystem
 public:
     void Render(const std::vector<unsigned int>& entities,
                 const std::unordered_map<unsigned int, Vector2>& positions,
-                const std::unordered_map<unsigned int, GeometryComponent>& geometryComponents);
+                const std::unordered_map<unsigned int, GeometryComponent>& geometryComponents) const;
 };
 
 #endif //GEOMETRYRENDERINGSYSTEM_H
