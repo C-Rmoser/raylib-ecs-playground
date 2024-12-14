@@ -17,7 +17,7 @@ public:
     std::queue<Entity> availableEntities{};
     std::vector<Entity> aliveEntities{};
     std::unordered_map<Entity, Vector2> positions{};
-    std::unordered_map<Entity, Vector2> rotations{};
+    std::unordered_map<Entity, Vector2> directions{};
     std::unordered_map<Entity, float> velocity;
     std::unordered_map<Entity, GeometryComponent> geometryComponents;
 

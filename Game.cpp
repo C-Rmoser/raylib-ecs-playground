@@ -12,7 +12,7 @@ void Game::Update(EntityManager& entityManager)
 {
     movementSystem.Update(entityManager.aliveEntities,
                           entityManager.positions,
-                          entityManager.rotations,
+                          entityManager.directions,
                           entityManager.velocity
     );
 }
@@ -21,6 +21,6 @@ void Game::Draw(const EntityManager& entityManager) const
 {
     renderer.Render(entityManager.aliveEntities,
                     entityManager.positions,
-                    entityManager.rotations,
+                    entityManager.directions,
                     entityManager.geometryComponents);
 }

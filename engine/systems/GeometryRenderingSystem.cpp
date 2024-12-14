@@ -37,11 +37,11 @@ void GeometryRenderingSystem::Render(
                 }
             }
 
-            const Vector2 scaledRotation{
+            const Vector2 scaledDirection{
                 Vector2Multiply(rotations.at(entity), Vector2{cellSize / 2, cellSize / 2})
             };
 
-            auto [directionIndicatorX, directionIndicatorY] = Vector2Add(center, scaledRotation);
+            auto [directionIndicatorX, directionIndicatorY] = Vector2Add(center, scaledDirection);
             DrawCircle(directionIndicatorX, directionIndicatorY, 3.0f, BLUE);
         }
     }

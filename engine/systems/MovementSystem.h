@@ -14,7 +14,7 @@ public:
     void Update(
         const std::vector<Entity>& entities,
         std::unordered_map<Entity, Vector2>& positions,
-        const std::unordered_map<Entity, Vector2>& rotations,
+        const std::unordered_map<Entity, Vector2>& directions,
         const std::unordered_map<Entity, float>& velocity
     );
 };

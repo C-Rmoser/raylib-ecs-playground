@@ -23,6 +23,6 @@ void EntityManager::DestroyEntity(Entity entity)
     availableEntities.push(entity);
 
     positions.erase(entity);
-    rotations.erase(entity);
+    directions.erase(entity);
     geometryComponents.erase(entity);
 }
