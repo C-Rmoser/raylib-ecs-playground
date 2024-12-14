@@ -15,13 +15,14 @@ int main()
     entityManager.positions[extractor] = Vector2(10, 10);
     entityManager.rotations[extractor] = Vector2(0, -1);
     entityManager.velocity[extractor] = 1.0f;
-    GeometryComponent geometryComponent = {1, 1};
+    GeometryComponent geometryComponent = {1, 1, circle, MAROON};
     entityManager.geometryComponents[extractor] = geometryComponent;
 
     const Entity extractor2 = entityManager.createEntity();
     entityManager.positions[extractor2] = Vector2(20, 15);
     entityManager.rotations[extractor2] = Vector2(1, 0);
     entityManager.velocity[extractor2] = 1.0f;
+    geometryComponent = {1, 1, rectangle, YELLOW};
     entityManager.geometryComponents[extractor2] = geometryComponent;
 
     while (!WindowShouldClose())

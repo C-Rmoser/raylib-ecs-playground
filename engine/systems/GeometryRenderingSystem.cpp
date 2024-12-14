@@ -17,17 +17,31 @@ void GeometryRenderingSystem::Render(
         if (positions.contains(entity) && geometryComponents.contains(entity))
         {
             const auto [posX, posY] = positions.at(entity);
-
-            const Vector2 circlePos{
+            const Color color = geometryComponents.at(entity).color;
+            const Vector2 center{
                 posX * cellSize + cellSize / 2,
                 posY * cellSize + cellSize / 2
             };
+
+            switch (geometryComponents.at(entity).shape)
+            {
+            case circle:
+                {
+                    DrawCircle(center.x, center.y, cellSize / 2 - 1, color);
+                    break;
+                }
+            case rectangle:
+                {
+                    DrawRectangle(posX * cellSize, posY * cellSize, cellSize, cellSize, color);
+                    break;
+                }
+            }
+
             const Vector2 scaledRotation{
                 Vector2Multiply(rotations.at(entity), Vector2{cellSize / 2, cellSize / 2})
             };
-            auto [directionIndicatorX, directionIndicatorY] = Vector2Add(circlePos, scaledRotation);
 
-            DrawCircle(circlePos.x, circlePos.y, cellSize / 2 - 1, MAROON);
+            auto [directionIndicatorX, directionIndicatorY] = Vector2Add(center, scaledRotation);
             DrawCircle(directionIndicatorX, directionIndicatorY, 3.0f, BLUE);
         }
     }
