@@ -1,8 +1,12 @@
 #ifndef GEOMETRYRENDERINGSYSTEM_H
 #define GEOMETRYRENDERINGSYSTEM_H
 
-#include "EntityManager.h"
+#include <unordered_map>
+#include <vector>
+
 #include "raylib.h"
+#include "types.h"
+#include "components/GeometryRenderingComponent.h"
 
 class GeometryRenderingSystem
 {

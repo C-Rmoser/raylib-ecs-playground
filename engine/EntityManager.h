@@ -3,17 +3,11 @@
 
 #include "raylib.h"
 
-#include <cstdint>
 #include <queue>
 #include <unordered_map>
 
-using Entity = uint32_t;
-
-struct GeometryComponent
-{
-    float width;
-    float height;
-};
+#include "types.h"
+#include "components/GeometryRenderingComponent.h"
 
 class EntityManager
 {

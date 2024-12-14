@@ -1,5 +1,10 @@
 #include "GeometryRenderingSystem.h"
+
+#include <unordered_map>
+#include <vector>
+
 #include "raymath.h"
+#include "types.h"
 
 void GeometryRenderingSystem::Render(
     const std::vector<Entity>& entities,

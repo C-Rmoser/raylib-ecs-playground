@@ -1,6 +1,6 @@
 #include "MovementSystem.h"
 
-#include <iostream>
+#include <vector>
 
 void MovementSystem::Update(
     const std::vector<Entity>& entities,

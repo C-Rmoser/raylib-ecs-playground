@@ -2,6 +2,7 @@
 #include "EntityManager.h"
 
 #include <raylib.h>
+#include "engine/types.h"
 
 int main()
 {

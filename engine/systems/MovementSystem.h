@@ -1,10 +1,12 @@
 #ifndef MOVEMENTSYSTEM_H
 #define MOVEMENTSYSTEM_H
 
-#include "EntityManager.h"
 #include "raylib.h"
 
 #include <unordered_map>
+#include <vector>
+
+#include "GeometryRenderingSystem.h"
 
 class MovementSystem
 {

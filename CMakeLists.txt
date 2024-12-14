@@ -32,15 +32,17 @@ endif ()
 add_executable(${PROJECT_NAME} main.cpp
         Game.cpp
         Game.h
-        EntityManager.cpp
-        EntityManager.h
-        GeometryRenderingSystem.cpp
-        GeometryRenderingSystem.h
-        MovementSystem.cpp
-        MovementSystem.h)
+        engine/EntityManager.cpp
+        engine/EntityManager.h
+        engine/systems/GeometryRenderingSystem.cpp
+        engine/systems/GeometryRenderingSystem.h
+        engine/systems/MovementSystem.cpp
+        engine/systems/MovementSystem.h
+        engine/components/GeometryRenderingComponent.h
+        engine/types.h)
 
 # set the include directory
-target_include_directories(${PROJECT_NAME} PRIVATE ${raylib_INCLUDE_DIRS})
+target_include_directories(${PROJECT_NAME} PRIVATE ${raylib_INCLUDE_DIRS}, ${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/engine)
 
 # link all libraries to the project
 target_link_libraries(${PROJECT_NAME} PRIVATE ${LIB1})

@@ -2,7 +2,7 @@
 
 EntityManager::EntityManager()
 {
-    for (uint32_t i = 0; i < maxEntities; ++i)
+    for (Entity i = 0; i < maxEntities; ++i)
     {
         availableEntities.push(i);
     }
@@ -10,7 +10,7 @@ EntityManager::EntityManager()
 
 Entity EntityManager::createEntity()
 {
-    Entity entity = availableEntities.front();
+    const Entity entity = availableEntities.front();
     availableEntities.pop();
     aliveEntities.push_back(entity);
 

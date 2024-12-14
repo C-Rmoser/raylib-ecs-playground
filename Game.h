@@ -2,8 +2,8 @@
 #define GAME_H
 
 #include "EntityManager.h"
-#include "GeometryRenderingSystem.h"
-#include "MovementSystem.h"
+#include "engine/systems/GeometryRenderingSystem.h"
+#include "engine/systems/MovementSystem.h"
 
 class Game
 {
