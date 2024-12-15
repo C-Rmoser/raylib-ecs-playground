@@ -10,7 +10,9 @@ void GeometryRenderingSystem::Render(
     const std::vector<Entity>& entities,
     const std::unordered_map<Entity, Vector2>& positions,
     const std::unordered_map<Entity, Vector2>& directions,
-    const std::unordered_map<Entity, GeometryComponent>& geometryComponents) const
+    const std::unordered_map<Entity, GeometryComponent>& geometryComponents,
+    float cellSize
+    )
 {
     for (Entity entity : entities)
     {

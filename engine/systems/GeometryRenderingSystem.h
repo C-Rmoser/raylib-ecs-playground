@@ -10,14 +10,18 @@
 
 class GeometryRenderingSystem
 {
-    float cellSize{40.0};
-
 public:
-    void Render(
+    GeometryRenderingSystem() = delete;
+    ~GeometryRenderingSystem() = delete;
+    GeometryRenderingSystem(const GeometryRenderingSystem&) = delete;
+    GeometryRenderingSystem& operator=(const GeometryRenderingSystem&) = delete;
+
+    static void Render(
         const std::vector<Entity>& entities,
         const std::unordered_map<unsigned int, Vector2>& positions,
         const std::unordered_map<Entity, Vector2>& directions,
-        const std::unordered_map<unsigned int, GeometryComponent>& geometryComponents) const;
+        const std::unordered_map<unsigned int, GeometryComponent>& geometryComponents,
+        float cellSize);
 };
 
 #endif //GEOMETRYRENDERINGSYSTEM_H

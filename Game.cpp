@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "EntityManager.h"
+#include "systems/MovementSystem.h"
 
 Game& Game::Instance()
 {
@@ -10,7 +11,7 @@ Game& Game::Instance()
 
 void Game::Update(EntityManager& entityManager)
 {
-    movementSystem.Update(entityManager.aliveEntities,
+    MovementSystem::Update(entityManager.aliveEntities,
                           entityManager.positions,
                           entityManager.directions,
                           entityManager.velocity
@@ -19,8 +20,9 @@ void Game::Update(EntityManager& entityManager)
 
 void Game::Draw(const EntityManager& entityManager) const
 {
-    renderer.Render(entityManager.aliveEntities,
-                    entityManager.positions,
-                    entityManager.directions,
-                    entityManager.geometryComponents);
+    GeometryRenderingSystem::Render(entityManager.aliveEntities,
+                                    entityManager.positions,
+                                    entityManager.directions,
+                                    entityManager.geometryComponents,
+                                    cellSize);
 }

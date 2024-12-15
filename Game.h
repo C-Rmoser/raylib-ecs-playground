@@ -2,8 +2,6 @@
 #define GAME_H
 
 #include "EntityManager.h"
-#include "engine/systems/GeometryRenderingSystem.h"
-#include "engine/systems/MovementSystem.h"
 
 class Game
 {
@@ -11,15 +9,14 @@ class Game
     ~Game() = default;
 
 public:
-    GeometryRenderingSystem renderer{};
-    MovementSystem movementSystem{};
+    float cellSize = 40.0f;
 
     static Game& Instance();
 
     Game(const Game&) = delete;
     Game& operator=(const Game&) = delete;
 
-    void Update(EntityManager& entityManager);
+    static void Update(EntityManager& entityManager);
     void Draw(const EntityManager& entityManager) const;
 };
 

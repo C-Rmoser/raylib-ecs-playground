@@ -10,8 +10,14 @@
 
 class MovementSystem
 {
+
 public:
-    void Update(
+    MovementSystem() = delete;
+    ~MovementSystem() = delete;
+    MovementSystem(const MovementSystem&) = delete;
+    MovementSystem& operator=(const MovementSystem&) = delete;
+
+    static void Update(
         const std::vector<Entity>& entities,
         std::unordered_map<Entity, Vector2>& positions,
         const std::unordered_map<Entity, Vector2>& directions,
