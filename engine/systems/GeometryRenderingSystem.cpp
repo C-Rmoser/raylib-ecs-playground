@@ -9,7 +9,7 @@
 void GeometryRenderingSystem::Render(
     const std::vector<Entity>& entities,
     const std::unordered_map<Entity, Vector2>& positions,
-    const std::unordered_map<Entity, Vector2>& rotations,
+    const std::unordered_map<Entity, Vector2>& directions,
     const std::unordered_map<Entity, GeometryComponent>& geometryComponents) const
 {
     for (Entity entity : entities)
@@ -32,13 +32,19 @@ void GeometryRenderingSystem::Render(
                 }
             case rectangle:
                 {
-                    DrawRectangle(posX * cellSize, posY * cellSize, cellSize, cellSize, color);
+                    const auto rec = Rectangle{
+                        center.x, center.y, cellSize, cellSize
+                    };
+
+                    const auto [dirX, dirY] = directions.at(entity);
+
+                    DrawRectanglePro(rec, {cellSize / 2.0f, cellSize / 2.0f}, atan2(dirY, dirX) * (180.0f / PI), color);
                     break;
                 }
             }
 
             const Vector2 scaledDirection{
-                Vector2Multiply(rotations.at(entity), Vector2{cellSize / 2, cellSize / 2})
+                Vector2Multiply(directions.at(entity), Vector2{cellSize / 2, cellSize / 2})
             };
 
             auto [directionIndicatorX, directionIndicatorY] = Vector2Add(center, scaledDirection);
