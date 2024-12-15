@@ -9,7 +9,7 @@ int main()
     InitWindow(1500, 1000, "Raylib");
     SetTargetFPS(60);
     auto& game = Game::Instance();
-    auto entityManager = EntityManager();
+    auto& entityManager = EntityManager::Instance(100000);
 
     const Entity extractor = entityManager.createEntity();
     entityManager.positions[extractor] = Vector2(10, 10);

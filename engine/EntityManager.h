@@ -11,9 +11,10 @@
 
 class EntityManager
 {
-public:
-    const unsigned int maxEntities = 100000;
+    explicit EntityManager(unsigned int maxEntities);
+    ~EntityManager() = default;
 
+public:
     std::queue<Entity> availableEntities{};
     std::vector<Entity> aliveEntities{};
     std::unordered_map<Entity, Vector2> positions{};
@@ -21,7 +22,7 @@ public:
     std::unordered_map<Entity, float> velocity;
     std::unordered_map<Entity, GeometryComponent> geometryComponents;
 
-    EntityManager();
+    static EntityManager& Instance(unsigned int maxEntities);
     Entity createEntity();
     void DestroyEntity(Entity entity);
 };

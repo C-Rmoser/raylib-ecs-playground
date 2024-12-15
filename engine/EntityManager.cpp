@@ -1,11 +1,17 @@
 #include "EntityManager.h"
 
-EntityManager::EntityManager()
+EntityManager::EntityManager(const unsigned int maxEntities)
 {
     for (Entity i = 0; i < maxEntities; ++i)
     {
         availableEntities.push(i);
     }
+}
+
+EntityManager& EntityManager::Instance(const unsigned int maxEntities)
+{
+    static EntityManager instance(maxEntities);
+    return instance;
 }
 
 Entity EntityManager::createEntity()
