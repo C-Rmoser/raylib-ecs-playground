@@ -39,7 +39,12 @@ add_executable(${PROJECT_NAME} main.cpp
         engine/systems/MovementSystem.cpp
         engine/systems/MovementSystem.h
         engine/components/GeometryRenderingComponent.h
-        engine/types.h)
+        engine/types.h
+        engine/events/EventManager.h
+        engine/events/Event.h
+        engine/events/EventManager.cpp
+        engine/events/SpawnOre.cpp
+        engine/events/SpawnOre.h)
 
 # set the include directory
 target_include_directories(${PROJECT_NAME} PRIVATE ${raylib_INCLUDE_DIRS}, ${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/engine)

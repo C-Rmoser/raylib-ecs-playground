@@ -1,8 +1,18 @@
+#include <functional>
+#include <iostream>
+#include <raylib.h>
+
 #include "Game.h"
 #include "EntityManager.h"
 
-#include <raylib.h>
 #include "engine/types.h"
+#include "events/EventManager.h"
+#include "events/SpawnOre.h"
+
+void ReactToSpawnedOre(Vector2 value)
+{
+    std::cout << "Spawning ore with value: " << value.x << " | " << value.y << std::endl;
+}
 
 int main()
 {
@@ -10,6 +20,15 @@ int main()
     SetTargetFPS(60);
     auto& game = Game::Instance();
     auto& entityManager = EntityManager::Instance(100000);
+    auto& eventManager = EventManager::Instance();
+    std::unique_ptr<Event> spawnOreEvent = std::make_unique<SpawnOre>(Vector2(14, 4));
+
+    auto event = SpawnOre();
+    eventManager.Subscribe(event, std::function<void(Vector2)>([](const Vector2 value)
+    {
+        ReactToSpawnedOre(value);
+    }));
+    eventManager.Publish(std::move(spawnOreEvent));
 
     const Entity extractor = entityManager.createEntity();
     entityManager.positions[extractor] = Vector2(10, 10);
@@ -25,9 +44,11 @@ int main()
     geometryComponent = {1, 1, rectangle, YELLOW};
     entityManager.geometryComponents[extractor2] = geometryComponent;
 
+
     while (!WindowShouldClose())
     {
-        game.Update(entityManager);
+        Game::Update(entityManager);
+        eventManager.Update();
 
         BeginDrawing();
 
